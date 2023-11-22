@@ -3,7 +3,7 @@ import {Fragment, useState} from 'react'
 import Modal from "../../components/Layout/UI/Modal"
 
 
-const ListItem = ({data}) =>{
+const ListItem = ({datas}) =>{
 
 
     const [counter,setCounter] = useState(0)
