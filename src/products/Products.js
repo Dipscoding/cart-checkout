@@ -6,10 +6,11 @@ import Loader from "../components/Layout/UI/Loader"
 
 
   
-const Products = () =>
+const Products = ({onAddItem,onRemoveItem}) =>
 {
     const [items,setItems] =useState([])
     const [loader,setLoader]=useState(true)
+    const [presentItems,setPresentItems] = useState([])
 
     useEffect(()=>{
         const fetchData = async ()=>{
@@ -31,6 +32,32 @@ const Products = () =>
         }
         fetchData()
     },[])
+
+    const handleAddItem = (id) =>{
+        console.log(id);
+        if(presentItems.indexOf(id)>-1){
+            return;
+        }else{
+            setPresentItems([...presentItems,id])
+        }
+        onAddItem()
+
+    }
+
+    const handleRemoveItem=(id)=>{
+        console.log(id);
+        let index = presentItems.indexOf(id)
+        if(index>-1){
+            let items = [...presentItems]
+            items.splice(index,1)
+            setPresentItems([...items])
+            onRemoveItem()
+        }
+        
+
+    }
+
+
     return (
         <>
         
@@ -38,7 +65,7 @@ const Products = () =>
             <div className="product-list--wrapper">
                 {
                     items.map((item,index)=>{
-                        return <ListItem key={index} data={item}/>
+                        return <ListItem key={index} data={item} onAdd={handleAddItem} onRemove={handleRemoveItem}/>
 
                     })
                 }

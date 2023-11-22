@@ -3,7 +3,7 @@ import {Fragment, useState} from 'react'
 import Modal from "../../components/Layout/UI/Modal"
 
 
-const ListItem = ({datas}) =>{
+const ListItem = ({data,onAdd,onRemove}) =>{
 
 
     const [counter,setCounter] = useState(0)
@@ -11,15 +11,23 @@ const ListItem = ({datas}) =>{
 
     const increaseCounterByOne = (e)=>{
         e.stopPropagation();
+        onAdd(data.id)
         setCounter(counter+1)
 
     }
 
     const decreaseCounterByOne = (e)=>{
         e.stopPropagation();
-        if(counter>0){
-            setCounter(counter-1)
+        // if(counter>0){
+        //     setCounter(counter-1)
+        // }
+        if(counter===0){
+            return;
         }
+        if(counter==1){
+            onRemove(data.id)
+        }
+        setCounter(counter-1)
        
         
     }
