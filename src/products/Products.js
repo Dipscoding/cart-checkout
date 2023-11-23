@@ -6,7 +6,7 @@ import Loader from "../components/Layout/UI/Loader"
 
 
   
-const Products = ({onAddItem,onRemoveItem}) =>
+const Products = ({onAddItem,onRemoveItem,eventState}) =>
 {
     const [items,setItems] =useState([])
     const [loader,setLoader]=useState(true)
@@ -34,6 +34,17 @@ const Products = ({onAddItem,onRemoveItem}) =>
         fetchData()
     },[])
 
+    useEffect(()=>{
+        if(eventState.id){
+            if(eventState.type===1){
+                handleAddItem(eventState.id)
+            }else if(eventState.type===-1){
+                handleRemoveItem(eventState.id)
+            }
+        }
+
+    },[eventState])
+
     const handleAddItem = (id) =>{
         console.log(id);
         // if(presentItems.indexOf(id)>-1){
@@ -46,6 +57,7 @@ const Products = ({onAddItem,onRemoveItem}) =>
         let index = data.findIndex(i => i.id===id)
         data[index].quantity+=1
         setItems([...data])
+        onAddItem(data[index])
 
     }
 
@@ -63,6 +75,7 @@ const Products = ({onAddItem,onRemoveItem}) =>
         if(data[index].quantity!==0){
             data[index].quantity-=1
             setItems([...data])
+            onRemoveItem(data[index])
         }
         
         
