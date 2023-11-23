@@ -10,7 +10,7 @@ const Products = ({onAddItem,onRemoveItem}) =>
 {
     const [items,setItems] =useState([])
     const [loader,setLoader]=useState(true)
-    const [presentItems,setPresentItems] = useState([])
+    // const [presentItems,setPresentItems] = useState([])
 
     useEffect(()=>{
         const fetchData = async ()=>{
@@ -20,6 +20,7 @@ const Products = ({onAddItem,onRemoveItem}) =>
             const transformedData = data.map((item,index)=>{
                 return {
                     ...item,
+                    quantity:0,
                     id:index
                 }
             })
@@ -35,24 +36,35 @@ const Products = ({onAddItem,onRemoveItem}) =>
 
     const handleAddItem = (id) =>{
         console.log(id);
-        if(presentItems.indexOf(id)>-1){
-            return;
-        }else{
-            setPresentItems([...presentItems,id])
-        }
-        onAddItem()
+        // if(presentItems.indexOf(id)>-1){
+        //     return;
+        // }else{
+        //     setPresentItems([...presentItems,id])
+        // }
+        // onAddItem()
+        let data = [...items]
+        let index = data.findIndex(i => i.id===id)
+        data[index].quantity+=1
+        setItems([...data])
 
     }
 
     const handleRemoveItem=(id)=>{
         console.log(id);
-        let index = presentItems.indexOf(id)
-        if(index>-1){
-            let items = [...presentItems]
-            items.splice(index,1)
-            setPresentItems([...items])
-            onRemoveItem()
+        // let index = presentItems.indexOf(id)
+        // if(index>-1){
+        //     let items = [...presentItems]
+        //     items.splice(index,1)
+        //     setPresentItems([...items])
+        //     onRemoveItem()
+        // }
+        let data = [...items]
+        let index = data.findIndex(i => i.id===id)
+        if(data[index].quantity!==0){
+            data[index].quantity-=1
+            setItems([...data])
         }
+        
         
 
     }
