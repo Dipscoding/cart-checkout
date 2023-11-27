@@ -10,7 +10,7 @@ const ListItem = ({data,onAdd,onRemove}) =>{
     const increaseCounterByOne = (e)=>{
         e.stopPropagation();
         onAdd(data.id)
-        // setCounter(counter+1)
+
 
     }
 
@@ -18,15 +18,6 @@ const ListItem = ({data,onAdd,onRemove}) =>{
         e.stopPropagation();
         onRemove(data.id)
 
-        // if(data.quantity===0){
-        //     return;
-        // }
-        // if(data.quantity===1){
-        //     onRemove(data.id)
-        // }
-        // setCounter(counter-1)
-       
-        
     }
 
     const handleModal = () =>{
@@ -56,15 +47,6 @@ const ListItem = ({data,onAdd,onRemove}) =>{
                 </div>
             }
 
-            {/* <button className="cart-add">
-               <span> Add to cart</span>
-                <img src={AddToCartIcon} alt="Cart Icon"/>
-                </button>
-                <div className="cart-addon">
-                    <button><span>-</span></button>
-                    <span className="counter">{datas}</span>
-                    <button><span>+</span></button>
-                </div> */}
         
 
         </div>
@@ -83,7 +65,7 @@ const ListItem = ({data,onAdd,onRemove}) =>{
                  <img src={AddToCartIcon} alt="Cart Icon"/>
                  </button>: <div className="cart-addon card-addon__modal">
                     <button onClick ={decreaseCounterByOne}><span>-</span></button>
-                    <span className="counter">{data.quantityr}</span>
+                    <span className="counter">{data.quantity}</span>
                     <button onClick ={increaseCounterByOne}><span>+</span></button>
                 </div>
             }
