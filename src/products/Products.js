@@ -6,7 +6,7 @@ import Loader from "../components/Layout/UI/Loader"
 
 
 
-const Products = ({ onAddItem, onRemoveItem, eventState }) => {
+const Products = () => {
     const [items, setItems] = useState([])
     const [loader, setLoader] = useState(true)
 
@@ -32,39 +32,9 @@ const Products = ({ onAddItem, onRemoveItem, eventState }) => {
         fetchData()
     }, [])
 
-    useEffect(() => {
-        if (eventState.id > -1) {
-            if (eventState.type === 1) {
-                handleAddItem(eventState.id)
-            } else if (eventState.type === -1) {
-                handleRemoveItem(eventState.id)
-            }
-        }
-
-    }, [eventState])
-
-    const handleAddItem = (id) => {
-        console.log(id);
-        let data = [...items]
-        let index = data.findIndex(i => i.id === id)
-        data[index].quantity += 1
-        setItems([...data])
-        onAddItem(data[index])
-
-    }
-
-    const handleRemoveItem = (id) => {
-        let data = [...items]
-        let index = data.findIndex(i => i.id === id)
-        if (data[index].quantity !== 0) {
-            data[index].quantity -= 1
-            setItems([...data])
-            onRemoveItem(data[index])
-        }
 
 
 
-    }
 
 
     return (
@@ -74,7 +44,7 @@ const Products = ({ onAddItem, onRemoveItem, eventState }) => {
                 <div className="product-list--wrapper">
                     {
                         items.map((item, index) => {
-                            return <ListItem key={index} data={item} onAdd={handleAddItem} onRemove={handleRemoveItem} />
+                            return <ListItem key={index} data={item}/>
 
                         })
                     }

@@ -3,7 +3,7 @@ import './App.css';
 import Header from './components/Layout/Header';
 import Subheader from './components/Layout/Subheader';
 import Products from './products/Products';
-
+import {useState} from 'react'
 
 
 
@@ -11,11 +11,14 @@ import Products from './products/Products';
 function App() {
 
 
+
+  
+
   return (
     <div className="App">
-      <Header count={cartItems.length} items={cartItems} onHandleEvent={handleEventQueue}/>
+      <Header />
       <Subheader/>
-      <Products onAddItem={handleAddItem} onRemoveItem={handleRemoveItem} eventState={eventQueue}/>
+      <Products />
 
      
     
