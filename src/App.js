@@ -3,7 +3,8 @@ import './App.css';
 import Header from './components/Layout/Header';
 import Subheader from './components/Layout/Subheader';
 import Products from './products/Products';
-import {useState} from 'react'
+import { Routes ,Route } from 'react-router-dom';
+
 
 
 
@@ -18,7 +19,13 @@ function App() {
     <div className="App">
       <Header />
       <Subheader/>
-      <Products />
+      < Routes>
+        <Route path="/:category?" exact  element={<Products />}>
+        
+
+        </Route>
+      </ Routes>
+     
 
      
     
