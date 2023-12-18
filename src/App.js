@@ -3,7 +3,7 @@ import './App.css';
 import Header from './components/Layout/Header';
 import Subheader from './components/Layout/Subheader';
 import Products from './products/Products';
-import { Routes ,Route } from 'react-router-dom';
+import { Routes ,Route, Navigate } from 'react-router-dom';
 
 
 
@@ -20,10 +20,15 @@ function App() {
       <Header />
       <Subheader/>
       < Routes>
-        <Route path="/:category?" exact  element={<Products />}>
+      <Route path="/404" exact="true" element={<h1>Not Found</h1>}>
+
+
+      </Route>
+        <Route path="/:category?" exact="true"  element={<Products />}>
         
 
         </Route>
+        <Route render={() => <Navigate to="/404" />}  />
       </ Routes>
      
 

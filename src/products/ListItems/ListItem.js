@@ -36,7 +36,7 @@ const ListItem = ({data}) =>{
         setShowModal(prevState=>!prevState)
     }
 
-    console.log(item?.quantity)
+    // console.log(item?.quantity)
  
 
     return (
